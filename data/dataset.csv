@@ -1,0 +1,4 @@
+text,sentiment
+"I love this product",Positive
+"This is the worst thing I’ve ever bought",Negative
+"The product was okay",Neutral

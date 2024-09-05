@@ -20,3 +20,11 @@ Allow users to input their own text for real-time sentiment analysis.
 Custom Visualization Dashboard
 
 Display results with clear visuals using libraries like Matplotlib or Plotly.
+
+## Setup
+1. Clone the repository:
+   git clone https://github.com/uditimadan/sentiSage.git
+2. Install the dependencies:
+   pip install -r requirements.txt
+3. Run the app:
+   python src/app.py

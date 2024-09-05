@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentiSage - Sentiment Analysis</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 text-center">SentiSage 🎉</h1>
+        <form action="/predict" method="POST">
+            <div class="form-group">
+                <label for="text">Enter your text:</label>
+                <textarea name="text" id="text" class="form-control" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Analyze Sentiment</button>
+        </form>
+
+        {% if sentiment %}
+        <div class="alert alert-info mt-3" role="alert">
+            Sentiment: {{ sentiment }} for "{{ text }}"
+        </div>
+        {% endif %}
+        
+        <a href="/visualize" class="btn btn-info mt-3">View Sentiment Distribution</a>
+    </div>
+</body>
+</html>

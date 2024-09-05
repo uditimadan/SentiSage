@@ -1,0 +1,11 @@
+
+---
+
+#### **`requirements.txt`**
+```txt
+flask
+torch
+transformers
+pandas
+matplotlib
+plotly
