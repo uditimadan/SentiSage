@@ -1,6 +1,7 @@
 # SentiSage
 A simple but unique project for text classification and sentiment analysis using BERT with an emphasis on custom datasets and more advanced visualizations.
 
+<img width="1178" height="1252" alt="SentiSagePredition" src="https://github.com/user-attachments/assets/8dd04581-0f4c-468d-93fe-a238eefebaa2" />
 
 
 ## Features
