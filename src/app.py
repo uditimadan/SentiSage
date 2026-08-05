@@ -1,10 +1,18 @@
+import os
+
 from flask import Flask, render_template, request
 import pandas as pd
-from src.preprocess import preprocess_data
 from src.model import SentimentModel
 from src.visualization import plot_sentiment_distribution
 
-app = Flask(__name__)
+# Resolve templates/static relative to the project root so the app works
+# whether it's launched as `python -m src.app` or from another working dir.
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+app = Flask(
+    __name__,
+    template_folder=os.path.join(BASE_DIR, 'templates'),
+    static_folder=os.path.join(BASE_DIR, 'static'),
+)
 
 # Load the pre-trained model
 model = SentimentModel()
@@ -16,17 +24,22 @@ def index():
 @app.route('/predict', methods=['POST'])
 def predict():
     text = request.form['text']
-    preprocessed_data = preprocess_data(text)
-    prediction = model.predict(preprocessed_data['tokens'].values[0])
-    
+    prediction = model.predict(text)
+
     sentiment = ["Negative", "Neutral", "Positive"][prediction]
     return render_template('index.html', sentiment=sentiment, text=text)
 
 @app.route('/visualize')
 def visualize():
-    data = pd.read_csv('data/dataset.csv')
-    plot_sentiment_distribution(data)
-    return "Sentiment distribution plotted!"
+    data = pd.read_csv(os.path.join(BASE_DIR, 'data', 'dataset.csv'))
+    plot_sentiment_distribution(data, output_path=os.path.join(BASE_DIR, 'static', 'sentiment_distribution.png'))
+    return (
+        '<div class="container text-center mt-5">'
+        '<h2>Sentiment Distribution</h2>'
+        '<img src="/static/sentiment_distribution.png" alt="Sentiment distribution chart" class="img-fluid">'
+        '<p><a href="/">Back</a></p>'
+        '</div>'
+    )
 
 if __name__ == '__main__':
     app.run(debug=True)

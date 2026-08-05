@@ -1,0 +1,16 @@
+# Virtual environments
+venv/
+.venv/
+path/
+
+# Python
+__pycache__/
+*.pyc
+
+# Generated at runtime
+static/*.png
+
+# Editors / OS
+.DS_Store
+.vscode/
+.idea/
